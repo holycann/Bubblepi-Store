@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { FiHome, FiShoppingBag, FiDatabase, FiShoppingCart, FiCreditCard, FiBarChart2, FiSettings, FiUser, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
-import { formatPrice, products } from '../lib/utils';
+import { formatPrice } from '../lib/utils';
+import { products } from '../data';
+import { FiUsers, FiPackage, FiDollarSign, FiShoppingCart, FiActivity, FiPieChart, FiChevronDown, FiChevronUp, FiRefreshCw } from 'react-icons/fi';
 
 const AdminDashboardPage = () => {
   const [activeTab, setActiveTab] = useState('dashboard');

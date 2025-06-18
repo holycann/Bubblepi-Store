@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { categories, products } from '../lib/utils';
+import { categories, products } from '../data';
 import ProductCard from './ProductCard';
 import { PiTelevisionSimpleBold, PiPaintBrushBold, PiRobotBold } from 'react-icons/pi';
 

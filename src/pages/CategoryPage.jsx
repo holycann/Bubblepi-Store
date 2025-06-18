@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
-import { products, categories } from '../lib/utils';
+import { products, categories } from '../data';
 import ProductCard from '../components/ProductCard';
 import { PiTelevisionSimpleBold, PiPaintBrushBold, PiRobotBold } from 'react-icons/pi';
 

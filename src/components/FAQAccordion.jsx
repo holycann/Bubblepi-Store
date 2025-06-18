@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { faqs } from '../lib/utils';
+import { faqs } from '../data';
 import { 
   FiChevronDown, 
   FiChevronUp, 

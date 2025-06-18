@@ -4,27 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { cn } from '../lib/utils';
 import { GradientButton } from './ui/gradient-button';
-
-const carouselItems = [
-  {
-    id: 1,
-    image: "https://placehold.co/1920x1080/595B83/F4ABC4?text=Premium+Streaming",
-    buttonText: "Get Started",
-    buttonLink: "/products?category=streaming"
-  },
-  {
-    id: 2,
-    image: "https://placehold.co/1920x1080/333456/F4ABC4?text=Design+Tools",
-    buttonText: "Explore Design",
-    buttonLink: "/products?category=design"
-  },
-  {
-    id: 3,
-    image: "https://placehold.co/1920x1080/060930/F4ABC4?text=AI+Solutions",
-    buttonText: "Discover AI",
-    buttonLink: "/products?category=ai"
-  }
-];
+import { carouselItems } from '../data';
 
 const HeroCarousel = () => {
   const [current, setCurrent] = useState(0);

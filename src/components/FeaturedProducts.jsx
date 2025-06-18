@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { products } from '../lib/utils';
+import { products } from '../data';
 import { formatPrice } from '../lib/utils';
-import { FiStar, FiArrowRight } from 'react-icons/fi';
+import { FiStar, FiArrowRight, FiChevronRight } from 'react-icons/fi';
 import { HoverBorderGradient } from './ui/hover-border-gradient';
 import { motion } from 'framer-motion';
 

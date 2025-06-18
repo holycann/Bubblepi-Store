@@ -1,6 +1,7 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { FiChevronRight } from 'react-icons/fi';
-import { testimonials } from '../lib/utils';
+import { FiChevronRight, FiStar } from 'react-icons/fi';
+import { testimonials } from '../data';
 import TestimonialCard from '../components/TestimonialCard';
 
 const TestimonialsPage = () => {

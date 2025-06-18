@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
-import { faqs } from "../lib/utils";
+import { faqs } from "../data";
 import { BackgroundGradient, GridPattern } from "./ui/background-gradient";
 
 const FAQSection = () => {

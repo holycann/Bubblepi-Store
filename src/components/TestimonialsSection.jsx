@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { testimonials } from "../lib/utils";
+import { testimonials } from "../data";
 import { FiStar } from "react-icons/fi";
 import { BackgroundBeams } from "./ui/background-gradient";
 
