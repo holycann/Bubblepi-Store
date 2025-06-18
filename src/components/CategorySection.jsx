@@ -1,89 +1,86 @@
 import { Link } from 'react-router-dom';
-import { categories, products } from '../data';
-import ProductCard from './ProductCard';
-import { PiTelevisionSimpleBold, PiPaintBrushBold, PiRobotBold } from 'react-icons/pi';
-
-const getCategoryIcon = (iconName) => {
-  switch (iconName) {
-    case 'PiTelevisionSimpleBold':
-      return <PiTelevisionSimpleBold className="w-8 h-8" />;
-    case 'PiPaintBrushBold':
-      return <PiPaintBrushBold className="w-8 h-8" />;
-    case 'PiRobotBold':
-      return <PiRobotBold className="w-8 h-8" />;
-    default:
-      return null;
-  }
-};
+import { motion } from 'framer-motion';
+import { FiArrowRight } from 'react-icons/fi';
+import { categories } from '../data';
 
 const CategorySection = () => {
+  // Motion variants for animations
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+  
   return (
-    <section id="categories">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {categories.map((category) => {
-            const categoryProducts = products.filter(p => p.category === category.slug);
-            const count = categoryProducts.length;
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+    >
+      {categories.map((category, index) => (
+        <motion.div
+          key={category.id}
+          variants={itemVariants}
+          className="relative group"
+        >
+          <Link
+            to={`/category/${category.id}`}
+            className="block overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow"
+          >
+            <div className="aspect-[4/3] overflow-hidden">
+              <img
+                src={category.image}
+                alt={category.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+            </div>
             
-            return (
-              <Link
-                key={category.id}
-                to={`/category/${category.slug}`}
-                className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow group"
-              >
-                <div className="p-6 flex items-center">
-                  <div className="w-16 h-16 rounded-full bg-pink-soft/20 flex items-center justify-center mr-4 group-hover:bg-pink-soft/40 transition-colors">
-                    <span className="text-purple-dark">
-                      {getCategoryIcon(category.icon)}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-navy">{category.name}</h3>
-                    <p className="text-gray-600">
-                      {count} {count === 1 ? 'Produk' : 'Produk'}
-                    </p>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 transition-opacity group-hover:opacity-90" />
+            
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 drop-shadow-md group-hover:translate-x-2 transition-transform">
+                    {category.name}
+                  </h3>
+                  <p className="text-sm text-white/80 drop-shadow-md line-clamp-2 max-w-xs mb-2 transition-opacity">
+                    {category.description}
+                  </p>
+                  
+                  <div className="flex items-center text-xs sm:text-sm mt-3 text-white/80 group-hover:text-white transition-colors">
+                    <span>Explore {category.name}</span>
+                    <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-              </Link>
-            );
-          })}
-        </div>
-        
-        {/* Sample for each category */}
-        {categories.map((category) => {
-          const categoryProducts = products.filter(p => p.category === category.slug);
-          
-          if (categoryProducts.length === 0) return null;
-          
-          return (
-            <div key={category.id} className="mb-16">
-              <div className="flex justify-between items-center mb-8">
-                <h3 className="text-2xl font-bold text-navy dark:text-gray-400 flex items-center">
-                  <span className="mr-2">{getCategoryIcon(category.icon)}</span>
-                  {category.name}
-                </h3>
-                 
-                <Link
-                  to={`/category/${category.slug}`}
-                  className=" inline-flex items-center gap-2 px-6 py-2 rounded-xl  text-white font-medium text-pink-soft hover:opacity-90 transition-colors flex items-center bg-gradient-to-r from-pink-soft to-purple-dark text-white font-medium hover:opacity-90 transition-all shadow-lg"
-                >
-                  Lihat Semua
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
+                
+                {category.icon && (
+                  <div className="bg-white/20 backdrop-blur-md p-3 rounded-lg">
+                    <category.icon className="w-6 h-6 text-white" />
+                  </div>
+                )}
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categoryProducts.slice(0, 3).map(product => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
+              {category.productCount && (
+                <div className="absolute top-6 right-6 bg-pink-soft/80 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full">
+                  {category.productCount} products
+                </div>
+              )}
             </div>
-          );
-        })}
-      </div>
-    </section>
+          </Link>
+        </motion.div>
+      ))}
+    </motion.div>
   );
 };
 
